@@ -25,6 +25,7 @@ class ChromePage extends Page {
         await this.downloadLink.click();
         await browser.pause(5000);
         await this.downloadLinkDropDown.click();
+        
         await browser.pause(15000);
     }
 }
