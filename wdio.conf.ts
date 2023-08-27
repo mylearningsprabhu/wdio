@@ -1,5 +1,9 @@
 import type { Options } from '@wdio/types'
+import * as fs from 'fs';
+import * as path from 'path'
+import Helper from './test/utility/helper.js'
 
+global.downloadDir =path.join(process.cwd(), 'tempDownloadDir');
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -65,7 +69,12 @@ export const config: Options.Testrunner = {
         // capabilities for local browser web tests
         browserName: 'chrome', // or "firefox", "microsoftedge", "safari""safebrowsing.enabled":true
         "goog:chromeOptions": {
-            args: ["--safebrowsing-disable-download-protection"]
+            args: ['--safebrowsing-disable-download-protection','headless', 'disable-gpu'],
+            prefs: {
+                'directory_upgrade': true,
+                'prompt_for_download': false,
+                'download.default_directory': global.downloadDir
+              }
             }
     }],
     //
@@ -102,7 +111,7 @@ export const config: Options.Testrunner = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 40000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -145,7 +154,7 @@ export const config: Options.Testrunner = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 120000
     },
     //
     // =====
@@ -160,9 +169,14 @@ export const config: Options.Testrunner = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
-    /**
+     onPrepare: function (config, capabilities) {
+         // make sure download directory exists
+    if (!fs.existsSync(global.downloadDir)){
+        // if it doesn't exist, create it
+        fs.mkdirSync(global.downloadDir);
+    }
+     },
+    /*
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
      * @param  {string} cid      capability id (e.g 0-0)
@@ -288,8 +302,9 @@ export const config: Options.Testrunner = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    onComplete: function(exitCode, config, capabilities, results) {
+       Helper.rmdir(global.downloadDir);
+    },
     /**
     * Gets executed when a refresh happens.
     * @param {string} oldSessionId session ID of the old session
