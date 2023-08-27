@@ -1,5 +1,4 @@
-import { ChainablePromiseElement } from 'webdriverio';
-
+import * as path from 'path'
 import Page from './page.js';
 
 /**
@@ -10,7 +9,7 @@ class ChromePage extends Page {
      * define selectors using getter methods
      */
     public get downloadLink () {
-        return $(`//*[@alt='a crowd of people at a concert with their hands in the air']`);
+        return $(`//a[text()=' Download the above Test Case Template(.xls)']`);
     }
     public get downloadLinkDropDown () {
         return $(`//*[text()='Download free']`);
@@ -22,11 +21,12 @@ class ChromePage extends Page {
      */
     public async ClickDownload () {
         await browser.pause(5000);
+        //await path.join(global.downloadDir,"TestTestTEst");
         await this.downloadLink.click();
-        await browser.pause(5000);
-        await this.downloadLinkDropDown.click();
+       await browser.pause(30000)
         
-        await browser.pause(15000);
+        //await this.downloadLinkDropDown.click();
+        
     }
 }
 
