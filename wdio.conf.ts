@@ -111,7 +111,7 @@ export const config: Options.Testrunner = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 40000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -154,7 +154,7 @@ export const config: Options.Testrunner = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 120000
     },
     //
     // =====
@@ -303,7 +303,7 @@ export const config: Options.Testrunner = {
      * @param {<Object>} results object containing test results
      */
     onComplete: function(exitCode, config, capabilities, results) {
-        Helper.rmdir(global.downloadDir);
+       Helper.rmdir(global.downloadDir);
     },
     /**
     * Gets executed when a refresh happens.

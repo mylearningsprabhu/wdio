@@ -21,9 +21,9 @@ class ChromePage extends Page {
      */
     public async ClickDownload () {
         await browser.pause(5000);
-        //await path.join(global.downloadDir,"TestTestTEst");
+       // await path.join(global.downloadDir,"TestTestTEst");
         await this.downloadLink.click();
-       await browser.pause(30000)
+       await browser.pause(10000)
         
         //await this.downloadLinkDropDown.click();
         
