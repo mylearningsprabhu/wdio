@@ -37,7 +37,7 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.ts'
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -69,7 +69,13 @@ export const config: Options.Testrunner = {
         // capabilities for local browser web tests
         browserName: 'chrome', // or "firefox", "microsoftedge", "safari""safebrowsing.enabled":true
         "goog:chromeOptions": {
-            args: ['--safebrowsing-disable-download-protection','headless', 'disable-gpu'],
+            args: [
+                '--safebrowsing-disable-download-protection',
+            '--no-sandbox',
+            '--disable-infobars',
+            '--headless',
+            '--disable-gpu',
+            '--window-size=1440,735'],
             prefs: {
                 'directory_upgrade': true,
                 'prompt_for_download': false,
