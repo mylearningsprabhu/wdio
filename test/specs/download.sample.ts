@@ -9,7 +9,6 @@ describe('Download verificaiton', () => {
         await browser.url('https://www.guru99.com/download-sample-test-case-template-with-explanation-of-important-fields.html');
         await ChromePage.ClickDownload()
         await expect(helper.gettempDownloadDirFileCount()).toEqual(1)
-        
     })
 })
 

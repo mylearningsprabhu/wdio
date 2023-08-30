@@ -10,9 +10,11 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.5",
     "wdio-chromedriver-service": "^8.1.1",
+    "wdio-docker-service": "^3.2.1",
     "wdio-wait-for": "^3.0.5"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.ts"
+    "wdio": "wdio run ./wdio.conf.ts",
+    "indocker": "wdio run ./wdio.docker.conf.ts"
   }
 }
