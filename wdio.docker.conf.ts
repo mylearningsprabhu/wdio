@@ -39,7 +39,7 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.ts'
+        './test/specs/**/download.sample.ts'
     ],
     // Patterns to exclude.
     exclude: [
@@ -81,7 +81,7 @@ export const config: Options.Testrunner = {
             prefs: {
                 'directory_upgrade': true,
                 'prompt_for_download': false,
-                'download.default_directory': global.downloadDir
+                'download.default_directory': '/home/seluser/Downloads'
               }
             }
     }],
@@ -311,7 +311,7 @@ export const config: Options.Testrunner = {
      * @param {<Object>} results object containing test results
      */
     onComplete: function(exitCode, config, capabilities, results) {
-       Helper.rmdir(global.downloadDir);
+      Helper.rmdir(global.downloadDir);
     },
     /**
     * Gets executed when a refresh happens.

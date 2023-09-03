@@ -14,7 +14,7 @@
     "wdio-wait-for": "^3.0.5"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.ts",
-    "indocker": "wdio run ./wdio.docker.conf.ts"
+    "inLocal": "wdio run ./wdio.conf.ts",
+    "inDocker": "wdio run ./wdio.docker.conf.ts"
   }
 }
