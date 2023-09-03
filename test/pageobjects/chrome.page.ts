@@ -8,11 +8,14 @@ class ChromePage extends Page {
     /**
      * define selectors using getter methods
      */
-    public get downloadLink () {
-        return $(`//a[text()=' Download the above Test Case Template(.xls)']`);
+    public get textBox() {
+        return $(`//*[@id='textbox']`);
     }
-    public get downloadLinkDropDown () {
-        return $(`//*[text()='Download free']`);
+    public get clickGenerate() {
+        return $(`//*[@id='createTxt']`);
+    }
+    public get clickDownloadLink() {
+        return $(`//*[@id='link-to-download']`);
     }
    
     /**
@@ -20,10 +23,15 @@ class ChromePage extends Page {
      * e.g. to login using username and password
      */
     public async ClickDownload () {
-        await browser.pause(5000);
+        await browser.pause(3000);
        // await path.join(global.downloadDir,"TestTestTEst");
-        await this.downloadLink.click();
-       await browser.pause(10000)
+        await this.textBox.setValue('Test data');
+       await browser.pause(3000)
+       await this.clickGenerate.click();
+       await browser.pause(3000)
+       await this.clickDownloadLink.click();
+       await browser.pause(3000)
+
         
         //await this.downloadLinkDropDown.click();
         
