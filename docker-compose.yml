@@ -8,7 +8,22 @@ services:
     shm_size: 2gb
     depends_on:
       - selenium-hub
-    scale: 1
+    scale: 7
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - VNC_NO_PASSWORD=1
+    volumes:
+      - ./tempDownloadDir:/home/seluser/Downloads
+
+
+  firefox:
+    image: selenium/node-firefox:dev
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    scale: 7
     environment:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
